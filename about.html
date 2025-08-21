@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Kafal Cooperative Society</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="images/logo svg.svg" alt="Kafal Cooperative Society Logo" onerror="this.style.display='none'">
+                Kafal Cooperative Society
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html" class="active">About Us</a>
+                <a href="events.html">Events</a>
+                <a href="services.html">Services</a>
+                <div class="nav-actions">
+                    <div class="notification-bell" onclick="toggleNotifications()">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge" id="notificationBadge" style="display: none;">0</span>
+                        <div class="notification-dropdown" id="notificationDropdown">
+                            <div class="notification-header">
+                                <h3>Notifications</h3>
+                                <span class="mark-all-read" onclick="markAllRead()">Mark all as read</span>
+                            </div>
+                            <div class="notification-list" id="notificationList">
+                                <div class="notification-item">
+                                    <div class="notification-icon">
+                                        <i class="fas fa-info-circle"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <h4>No New Notifications</h4>
+                                        <p>You're all caught up! Check back later for updates.</p>
+                                        <span class="notification-time">Now</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="notification-footer">
+                                <a href="#" class="view-all-btn">View All Notifications</a>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="admin-register.html" class="btn btn-outline">Admin Register</a>
+                    <a href="member-login.html" class="btn btn-primary">Login</a>
+                </div>
+            </div>
+            <button class="menu-toggle" aria-label="Toggle menu">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- About Hero -->
+    <section class="page-hero">
+        <div class="container">
+            <h1>About Kafal Cooperative Society</h1>
+            <p>Our journey, mission, and leadership</p>
+        </div>
+    </section>
+
+    <!-- About Content -->
+    <section class="about-section">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-content">
+                    <h2>Our History</h2>
+                    <p>Founded in 1985, Kafal Cooperative Society has grown from a small community cooperative to one of the most trusted financial institutions in the region. With over three decades of service, we've built our reputation on integrity, innovation, and personalized service.</p>
+                    <p>Today, we serve over 2 million customers through our network of 250+ branches and our award-winning digital banking platform.</p>
+                </div>
+                <div class="about-image">
+                    <div class="about-image">Image Placeholder - Bank History</div>
+                </div>
+            </div>
+            
+            <div class="about-grid reverse">
+                <div class="about-content">
+                    <h2>Our Mission</h2>
+                    <p>At Kafal Cooperative Society, our mission is to empower individuals and businesses to achieve their financial goals through innovative cooperative banking solutions and exceptional service.</p>
+                    <p>We believe in building lasting relationships with our customers by understanding their unique needs and providing tailored financial solutions that help them thrive.</p>
+                </div>
+                <div class="about-image">
+                    <div class="about-image">Image Placeholder - Our Mission</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Leadership -->
+    <section class="leadership">
+        <div class="container">
+            <h2 class="section-title">Our Leadership</h2>
+            <div class="team-grid">
+                <div class="team-card">
+                    <div style="width: 100%; height: 250px; background: #e5e7eb; display: flex; align-items: center; justify-content: center; color: #6b7280;">CEO Photo</div>
+                    <h3>Robert Johnson</h3>
+                    <p>Chief Executive Officer</p>
+                </div>
+                <div class="team-card">
+                    <div style="width: 100%; height: 250px; background: #e5e7eb; display: flex; align-items: center; justify-content: center; color: #6b7280;">CFO Photo</div>
+                    <h3>Sarah Williams</h3>
+                    <p>Chief Financial Officer</p>
+                </div>
+                <div class="team-card">
+                    <div style="width: 100%; height: 250px; background: #e5e7eb; display: flex; align-items: center; justify-content: center; color: #6b7280;">CIO Photo</div>
+                    <h3>Michael Chen</h3>
+                    <p>Chief Information Officer</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery -->
+    <section class="gallery">
+        <div class="container">
+            <div class="about-gallery">
+                <div class="gallery-item">
+                    <img src="https://i.imgur.com/kafal1.jpg" alt="KAFAL Annual Function 2022 - Cultural Performance">
+                    <div class="gallery-overlay">
+                        <h4>Annual Cultural Function</h4>
+                        <p>Traditional performances celebrating our heritage</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://i.imgur.com/kafal2.jpg" alt="KAFAL Society Members Group Photo">
+                    <div class="gallery-overlay">
+                        <h4>Our Community</h4>
+                        <p>Members and stakeholders at Annual Function 2022</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://i.imgur.com/kafal3.jpg" alt="KAFAL Society Leadership">
+                    <div class="gallery-overlay">
+                        <h4>Leadership Team</h4>
+                        <p>Dedicated leaders serving our cooperative society</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Accounts</h3>
+                    <ul>
+                        <li><a href="#">Savings Account</a></li>
+                        <li><a href="#">Current Account</a></li>
+                        <li><a href="#">Salary Account</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="services.html">Loans</a></li>
+                        <li><a href="services.html">Cards</a></li>
+                        <li><a href="services.html">Investments</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="events.html">Events</a></li>
+                        <li><a href="#">Careers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li><a href="#">Customer Care</a></li>
+                        <li><a href="#">Branch Locator</a></li>
+                        <li>24x7 Helpline: 1800 123 4567</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Kafal Cooperative Society. All rights reserved.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

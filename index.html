@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kafal Cooperative Society - Home</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="images/logo svg.svg" alt="Kafal Cooperative Society Logo" onerror="this.style.display='none'">
+                Kafal Cooperative Society
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="active">Home</a>
+                <a href="about.html">About Us</a>
+                <a href="events.html">Events</a>
+                <a href="services.html">Services</a>
+                <div class="nav-actions">
+                    <div class="notification-bell" onclick="toggleNotifications()">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge" id="notificationBadge" style="display: none;">0</span>
+                        <div class="notification-dropdown" id="notificationDropdown">
+                            <div class="notification-header">
+                                <h3>Notifications</h3>
+                                <span class="mark-all-read" onclick="markAllRead()">Mark all as read</span>
+                            </div>
+                            <div class="notification-list" id="notificationList">
+                                <div class="notification-item">
+                                    <div class="notification-icon">
+                                        <i class="fas fa-info-circle"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <h4>No New Notifications</h4>
+                                        <p>You're all caught up! Check back later for updates.</p>
+                                        <span class="notification-time">Now</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="notification-footer">
+                                <a href="#" class="view-all-btn">View All Notifications</a>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="admin-register.html" class="btn btn-outline">Admin Register</a>
+                    <a href="member-login.html" class="btn btn-primary">Login</a>
+                </div>
+            </div>
+            <button class="menu-toggle" aria-label="Toggle menu">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="slideshow">
+            <div class="slide active">
+                <img src="images/hero1.jpg" alt="Banking hall with customers" onerror="this.style.display='none'">
+                <div class="slide-content">
+                    <h1>Smart Banking Solutions</h1>
+                    <p>Experience seamless digital banking with Cosmos Bank</p>
+                    <a href="services.html" class="btn btn-primary">Explore Services</a>
+                </div>
+            </div>
+            <div class="slide">
+                <img src="images/hero2.jpg" alt="Mobile banking app" onerror="this.style.display='none'">
+                <div class="slide-content">
+                    <h1>Bank On The Go</h1>
+                    <p>Download our award-winning mobile app</p>
+                    <a href="#" class="btn btn-primary">Download Now</a>
+                </div>
+            </div>
+            <div class="slide-nav">
+                <span class="dot active"></span>
+                <span class="dot"></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Actions -->
+    <section class="quick-actions">
+        <div class="container">
+            <h2 class="section-title">Quick Actions</h2>
+            <div class="action-grid">
+                <a href="member-register.html" class="action-card">
+                    <i class="fas fa-user-plus"></i>
+                    <h3>Open Account</h3>
+                    <p>Create new member account</p>
+                </a>
+                <a href="admin-register.html" class="action-card">
+                    <i class="fas fa-user-shield"></i>
+                    <h3>Admin Access</h3>
+                    <p>Request admin privileges</p>
+                </a>
+                <a href="member-login.html" class="action-card">
+                    <i class="fas fa-sign-in-alt"></i>
+                    <h3>Member Login</h3>
+                    <p>Access your account</p>
+                </a>
+                <a href="admin-login.html" class="action-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Admin Portal</h3>
+                    <p>Administrative access</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Accounts</h3>
+                    <ul>
+                        <li><a href="#">Savings Account</a></li>
+                        <li><a href="#">Current Account</a></li>
+                        <li><a href="#">Salary Account</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="services.html">Loans</a></li>
+                        <li><a href="services.html">Cards</a></li>
+                        <li><a href="services.html">Investments</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="events.html">Events</a></li>
+                        <li><a href="#">Careers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li><a href="#">Customer Care</a></li>
+                        <li><a href="#">Branch Locator</a></li>
+                        <li>24x7 Helpline: 1800 123 4567</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Kafal Cooperative Society. All rights reserved.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Notice Popup Modal -->
+    <div id="noticePopup" class="notice-popup">
+        <div class="notice-popup-content">
+            <div class="notice-popup-header">
+                <h3 id="noticeTitle">Notice Title</h3>
+                <span class="close" onclick="closeNoticePopup()">&times;</span>
+            </div>
+            <div class="notice-popup-body">
+                <div class="notice-meta">
+                    <span class="notice-date" id="noticeDate">Posted: January 15, 2024</span>
+                    <span class="notice-type" id="noticeType">General Notice</span>
+                </div>
+                <div class="notice-content" id="noticeContent">
+                    <!-- Notice content will be populated here -->
+                </div>
+                <div class="notice-pdf-section" id="noticePdfSection">
+                    <div class="pdf-download">
+                        <i class="fas fa-file-pdf"></i>
+                        <div class="pdf-info">
+                            <span class="pdf-name" id="pdfName">Notice Document</span>
+                            <span class="pdf-size">PDF • 245 KB</span>
+                        </div>
+                        <button class="btn-download" onclick="downloadCurrentPDF()">
+                            <i class="fas fa-download"></i> Download
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="notice-popup-footer">
+                <button class="btn btn-outline" onclick="closeNoticePopup()">Close</button>
+                <button class="btn btn-primary" onclick="markNoticeAsRead()">
+                    <i class="fas fa-check"></i> Mark as Read
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+    <script src="assets/js/api.js"></script>
+    <script src="assets/js/realtime.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script>
+        // Notice popup functionality
+        const notices = {
+            'agm': {
+                title: 'Annual General Meeting 2024',
+                date: 'Posted: January 15, 2024',
+                type: 'Important Notice',
+                content: `
+                    <p><strong>Dear Members,</strong></p>
+                    <p>We are pleased to announce that the Annual General Meeting (AGM) of Kafal Cooperative Society will be held on:</p>
+                    <ul>
+                        <li><strong>Date:</strong> February 15, 2024 (Saturday)</li>
+                        <li><strong>Time:</strong> 10:00 AM - 1:00 PM</li>
+                        <li><strong>Venue:</strong> Main Conference Hall, Kafal Cooperative Society</li>
+                    </ul>
+                    <p><strong>Agenda:</strong></p>
+                    <ol>
+                        <li>Review of Annual Financial Report</li>
+                        <li>Election of Board Members</li>
+                        <li>Discussion on New Investment Schemes</li>
+                        <li>Member Feedback and Suggestions</li>
+                    </ol>
+                    <p>All members are requested to attend this important meeting. Refreshments will be provided.</p>
+                    <p><em>For any queries, please contact the administration office.</em></p>
+                `,
+                pdfName: 'AGM_Notice_2024.pdf'
+            },
+            'interest': {
+                title: 'Updated Interest Rates',
+                date: 'Posted: January 10, 2024',
+                type: 'Rate Update',
+                content: `
+                    <p><strong>Interest Rate Revision - Effective February 1, 2024</strong></p>
+                    <p>We are pleased to announce revised interest rates for our deposit schemes:</p>
+                    <table style="width: 100%; border-collapse: collapse; margin: 15px 0;">
+                        <tr style="background: #f8f9fa;">
+                            <th style="padding: 10px; border: 1px solid #ddd;">Deposit Type</th>
+                            <th style="padding: 10px; border: 1px solid #ddd;">Previous Rate</th>
+                            <th style="padding: 10px; border: 1px solid #ddd;">New Rate</th>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px; border: 1px solid #ddd;">Fixed Deposits (1-2 years)</td>
+                            <td style="padding: 10px; border: 1px solid #ddd;">7.5%</td>
+                            <td style="padding: 10px; border: 1px solid #ddd;"><strong>8.0%</strong></td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px; border: 1px solid #ddd;">Recurring Deposits</td>
+                            <td style="padding: 10px; border: 1px solid #ddd;">7.0%</td>
+                            <td style="padding: 10px; border: 1px solid #ddd;"><strong>7.5%</strong></td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px; border: 1px solid #ddd;">Savings Account</td>
+                            <td style="padding: 10px; border: 1px solid #ddd;">4.0%</td>
+                            <td style="padding: 10px; border: 1px solid #ddd;"><strong>4.5%</strong></td>
+                        </tr>
+                    </table>
+                    <p>These rates are effective from February 1, 2024, and apply to all new and existing deposits.</p>
+                `,
+                pdfName: 'Interest_Rates_2024.pdf'
+            }
+        };
+
+        function showNoticePopup(noticeId) {
+            const notice = notices[noticeId];
+            if (!notice) return;
+
+            document.getElementById('noticeTitle').textContent = notice.title;
+            document.getElementById('noticeDate').textContent = notice.date;
+            document.getElementById('noticeType').textContent = notice.type;
+            document.getElementById('noticeContent').innerHTML = notice.content;
+            document.getElementById('pdfName').textContent = notice.pdfName;
+            
+            // Store current notice for PDF download
+            window.currentNotice = notice;
+            
+            document.getElementById('noticePopup').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeNoticePopup() {
+            document.getElementById('noticePopup').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        function downloadNoticePDF(noticeId) {
+            const notice = notices[noticeId];
+            if (notice) {
+                // Simulate PDF download
+                alert(`Downloading ${notice.pdfName}...`);
+                // In real implementation, this would trigger actual PDF download
+                const link = document.createElement('a');
+                link.href = '#'; // Would be actual PDF URL
+                link.download = notice.pdfName;
+                link.click();
+            }
+        }
+
+        function downloadCurrentPDF() {
+            if (window.currentNotice) {
+                alert(`Downloading ${window.currentNotice.pdfName}...`);
+                // Simulate download
+                const link = document.createElement('a');
+                link.href = '#'; // Would be actual PDF URL
+                link.download = window.currentNotice.pdfName;
+                link.click();
+            }
+        }
+
+        function markNoticeAsRead() {
+            alert('Notice marked as read!');
+            closeNoticePopup();
+            
+            // Update notification badge
+            const badge = document.querySelector('.notification-bell .badge');
+            const currentCount = parseInt(badge.textContent);
+            if (currentCount > 0) {
+                badge.textContent = currentCount - 1;
+                if (currentCount - 1 === 0) {
+                    badge.style.display = 'none';
+                }
+            }
+        }
+
+        // Close popup when clicking outside
+        window.onclick = function(event) {
+            const popup = document.getElementById('noticePopup');
+            if (event.target == popup) {
+                closeNoticePopup();
+            }
+        }
+    </script>
+</body>
+</html>

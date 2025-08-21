@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Kafal Cooperative Society</title>
+    <meta name="description" content="Administrative dashboard for Kafal Cooperative Society management.">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="assets/js/api.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo-container">
+                <img src="images/logo svg.svg" alt="Kafal Cooperative Society Logo" class="logo-img">
+                <div class="logo">Kafal Cooperative Society - Admin</div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="admin-dashboard.html" class="active">Dashboard</a></li>
+                <li><a href="index.html">Member View</a></li>
+                <li><a href="#" onclick="showNoticeModal()">Post Notice</a></li>
+                <li><a href="#" onclick="logout()">Logout</a></li>
+            </ul>
+            <div class="admin-profile">
+                <i class="fas fa-user-shield"></i>
+                <span>Admin Panel</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Admin Dashboard Hero -->
+    <section class="admin-hero">
+        <div class="container">
+            <h1><i class="fas fa-tachometer-alt"></i> Administrative Dashboard</h1>
+            <p>Manage member requests, post notices, and oversee cooperative operations</p>
+        </div>
+    </section>
+
+    <!-- Dashboard Stats -->
+    <section class="dashboard-stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>Total Members</h3>
+                        <span class="stat-number">247</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon pending">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>Pending Requests</h3>
+                        <span class="stat-number">12</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon success">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>Approved Today</h3>
+                        <span class="stat-number">5</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon warning">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>Active Notices</h3>
+                        <span class="stat-number">3</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Member Requests Management -->
+    <section class="member-requests">
+        <div class="container">
+            <div class="section-header">
+                <h2><i class="fas fa-user-plus"></i> Member Signup Requests</h2>
+                <div class="header-actions">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Search members..." id="memberSearch">
+                    </div>
+                    <div class="filter-buttons">
+                        <button class="filter-btn active" data-filter="all">All Requests</button>
+                        <button class="filter-btn" data-filter="pending">Pending</button>
+                        <button class="filter-btn" data-filter="approved">Approved</button>
+                        <button class="filter-btn" data-filter="rejected">Rejected</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="requests-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Date Applied</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="requestsTableBody">
+                        <tr data-status="pending">
+                            <td>
+                                <div class="member-info">
+                                    <i class="fas fa-user"></i>
+                                    <span>Rajesh Kumar</span>
+                                </div>
+                            </td>
+                            <td>rajesh.kumar@email.com</td>
+                            <td>+91 9876543210</td>
+                            <td>2024-01-15</td>
+                            <td><span class="status-badge pending">Pending</span></td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="btn-action approve" onclick="approveRequest(1)">
+                                        <i class="fas fa-check"></i> Approve
+                                    </button>
+                                    <button class="btn-action reject" onclick="rejectRequest(1)">
+                                        <i class="fas fa-times"></i> Reject
+                                    </button>
+                                    <button class="btn-action view" onclick="viewRequest(1)">
+                                        <i class="fas fa-eye"></i> View
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr data-status="pending">
+                            <td>
+                                <div class="member-info">
+                                    <i class="fas fa-user"></i>
+                                    <span>Priya Sharma</span>
+                                </div>
+                            </td>
+                            <td>priya.sharma@email.com</td>
+                            <td>+91 9876543211</td>
+                            <td>2024-01-14</td>
+                            <td><span class="status-badge pending">Pending</span></td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="btn-action approve" onclick="approveRequest(2)">
+                                        <i class="fas fa-check"></i> Approve
+                                    </button>
+                                    <button class="btn-action reject" onclick="rejectRequest(2)">
+                                        <i class="fas fa-times"></i> Reject
+                                    </button>
+                                    <button class="btn-action view" onclick="viewRequest(2)">
+                                        <i class="fas fa-eye"></i> View
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr data-status="pending">
+                            <td>
+                                <div class="member-info">
+                                    <i class="fas fa-user"></i>
+                                    <span>Suresh Patel</span>
+                                </div>
+                            </td>
+                            <td>suresh.patel@email.com</td>
+                            <td>+91 9876543213</td>
+                            <td>2024-01-16</td>
+                            <td><span class="status-badge pending">Pending</span></td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="btn-action approve" onclick="approveRequest(4)">
+                                        <i class="fas fa-check"></i> Approve
+                                    </button>
+                                    <button class="btn-action reject" onclick="rejectRequest(4)">
+                                        <i class="fas fa-times"></i> Reject
+                                    </button>
+                                    <button class="btn-action view" onclick="viewRequest(4)">
+                                        <i class="fas fa-eye"></i> View
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr data-status="rejected">
+                            <td>
+                                <div class="member-info">
+                                    <i class="fas fa-user"></i>
+                                    <span>Neha Gupta</span>
+                                </div>
+                            </td>
+                            <td>neha.gupta@email.com</td>
+                            <td>+91 9876543214</td>
+                            <td>2024-01-12</td>
+                            <td><span class="status-badge rejected">Rejected</span></td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="btn-action view" onclick="viewRequest(5)">
+                                        <i class="fas fa-eye"></i> View
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr data-status="approved">
+                            <td>
+                                <div class="member-info">
+                                    <i class="fas fa-user"></i>
+                                    <span>Amit Singh</span>
+                                </div>
+                            </td>
+                            <td>amit.singh@email.com</td>
+                            <td>+91 9876543212</td>
+                            <td>2024-01-13</td>
+                            <td><span class="status-badge approved">Approved</span></td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="btn-action view" onclick="viewRequest(3)">
+                                        <i class="fas fa-eye"></i> View
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Notice Management -->
+    <section class="notice-management">
+        <div class="container">
+            <div class="section-header">
+                <h2><i class="fas fa-bullhorn"></i> Notice Management</h2>
+                <div class="header-actions">
+                    <button class="btn btn-primary" onclick="showNoticeModal()">
+                        <i class="fas fa-plus"></i> Post New Notice
+                    </button>
+                    <button class="btn btn-outline" onclick="showMemberProfilesModal()">
+                        <i class="fas fa-users"></i> Member Profiles
+                    </button>
+                </div>
+            </div>
+            
+            <div class="notices-grid">
+                <div class="notice-card">
+                    <div class="notice-header">
+                        <h3>Annual General Meeting</h3>
+                        <span class="notice-date">Posted: Jan 15, 2024</span>
+                    </div>
+                    <p>Notice for the upcoming Annual General Meeting scheduled for February 15, 2024.</p>
+                    <div class="notice-actions">
+                        <a href="#" class="notice-pdf">
+                            <i class="fas fa-file-pdf"></i> AGM_Notice_2024.pdf
+                        </a>
+                        <button class="btn-action edit" onclick="editNotice(1)">
+                            <i class="fas fa-edit"></i> Edit
+                        </button>
+                        <button class="btn-action delete" onclick="deleteNotice(1)">
+                            <i class="fas fa-trash"></i> Delete
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="notice-card">
+                    <div class="notice-header">
+                        <h3>Interest Rate Update</h3>
+                        <span class="notice-date">Posted: Jan 10, 2024</span>
+                    </div>
+                    <p>Updated interest rates for savings accounts and fixed deposits effective from February 1, 2024.</p>
+                    <div class="notice-actions">
+                        <a href="#" class="notice-pdf">
+                            <i class="fas fa-file-pdf"></i> Interest_Rates_2024.pdf
+                        </a>
+                        <button class="btn-action edit" onclick="editNotice(2)">
+                            <i class="fas fa-edit"></i> Edit
+                        </button>
+                        <button class="btn-action delete" onclick="deleteNotice(2)">
+                            <i class="fas fa-trash"></i> Delete
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Notice Posting Modal -->
+    <div id="noticeModal" class="notice-modal">
+        <div class="notice-modal-content">
+            <div class="notice-modal-header">
+                <h2><i class="fas fa-bullhorn"></i> Post New Notice</h2>
+                <span class="close" onclick="closeNoticeModal()">&times;</span>
+            </div>
+            <div class="notice-modal-body">
+                <form class="notice-form" id="noticeForm">
+                    <div class="form-group">
+                        <label for="noticeTitle">Notice Title *</label>
+                        <input type="text" id="noticeTitle" name="noticeTitle" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="noticeContent">Notice Content *</label>
+                        <textarea id="noticeContent" name="noticeContent" rows="5" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="noticePDF">Upload PDF Document</label>
+                        <div class="file-upload-area" onclick="document.getElementById('noticePDF').click()">
+                            <i class="fas fa-file-pdf"></i>
+                            <p>Click to upload PDF</p>
+                            <small>PDF files only (Max 10MB)</small>
+                        </div>
+                        <input type="file" id="noticePDF" name="noticePDF" accept=".pdf" style="display: none;">
+                        <div class="file-preview" id="pdfPreview"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="noticeExpiry">Notice Expiry Date</label>
+                        <input type="date" id="noticeExpiry" name="noticeExpiry">
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-outline" onclick="closeNoticeModal()">Cancel</button>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i> Post Notice
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Member Request Details Modal -->
+    <div id="requestModal" class="request-modal">
+        <div class="request-modal-content">
+            <div class="request-modal-header">
+                <h2><i class="fas fa-user"></i> Member Request Details</h2>
+                <span class="close" onclick="closeRequestModal()">&times;</span>
+            </div>
+            <div class="request-modal-body">
+                <div id="requestDetails">
+                    <!-- Request details will be populated here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Member Profiles Modal -->
+    <div id="memberProfilesModal" class="member-profiles-modal">
+        <div class="member-profiles-modal-content">
+            <div class="member-profiles-modal-header">
+                <h2><i class="fas fa-users"></i> Member Profiles Management</h2>
+                <span class="close" onclick="closeMemberProfilesModal()">&times;</span>
+            </div>
+            <div class="member-profiles-modal-body">
+                <div class="profiles-search">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Search members by name, email, or phone..." id="profileSearch">
+                    </div>
+                    <div class="profile-filters">
+                        <select id="memberTypeFilter">
+                            <option value="all">All Members</option>
+                            <option value="active">Active Members</option>
+                            <option value="inactive">Inactive Members</option>
+                            <option value="premium">Premium Members</option>
+                        </select>
+                        <button class="btn btn-primary" onclick="exportMemberData()">
+                            <i class="fas fa-download"></i> Export Data
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="member-profiles-grid">
+                    <div class="member-profile-card">
+                        <div class="profile-avatar">
+                            <i class="fas fa-user-circle"></i>
+                        </div>
+                        <div class="profile-info">
+                            <h4>Rajesh Kumar</h4>
+                            <p class="member-id">Member ID: KCS001</p>
+                            <p class="member-email">rajesh.kumar@email.com</p>
+                            <p class="member-phone">+91 9876543210</p>
+                            <div class="member-stats">
+                                <span class="stat">
+                                    <i class="fas fa-calendar"></i>
+                                    Joined: Jan 2023
+                                </span>
+                                <span class="stat">
+                                    <i class="fas fa-coins"></i>
+                                    Balance: ₹25,000
+                                </span>
+                            </div>
+                            <div class="member-status active">Active</div>
+                        </div>
+                        <div class="profile-actions">
+                            <button class="btn-action view" onclick="viewMemberDetails('KCS001')">
+                                <i class="fas fa-eye"></i> View
+                            </button>
+                            <button class="btn-action edit" onclick="editMemberProfile('KCS001')">
+                                <i class="fas fa-edit"></i> Edit
+                            </button>
+                            <button class="btn-action message" onclick="sendMessage('KCS001')">
+                                <i class="fas fa-envelope"></i> Message
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="member-profile-card">
+                        <div class="profile-avatar">
+                            <i class="fas fa-user-circle"></i>
+                        </div>
+                        <div class="profile-info">
+                            <h4>Priya Sharma</h4>
+                            <p class="member-id">Member ID: KCS002</p>
+                            <p class="member-email">priya.sharma@email.com</p>
+                            <p class="member-phone">+91 9876543211</p>
+                            <div class="member-stats">
+                                <span class="stat">
+                                    <i class="fas fa-calendar"></i>
+                                    Joined: Dec 2023
+                                </span>
+                                <span class="stat">
+                                    <i class="fas fa-coins"></i>
+                                    Balance: ₹18,500
+                                </span>
+                            </div>
+                            <div class="member-status premium">Premium</div>
+                        </div>
+                        <div class="profile-actions">
+                            <button class="btn-action view" onclick="viewMemberDetails('KCS002')">
+                                <i class="fas fa-eye"></i> View
+                            </button>
+                            <button class="btn-action edit" onclick="editMemberProfile('KCS002')">
+                                <i class="fas fa-edit"></i> Edit
+                            </button>
+                            <button class="btn-action message" onclick="sendMessage('KCS002')">
+                                <i class="fas fa-envelope"></i> Message
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="member-profile-card">
+                        <div class="profile-avatar">
+                            <i class="fas fa-user-circle"></i>
+                        </div>
+                        <div class="profile-info">
+                            <h4>Amit Singh</h4>
+                            <p class="member-id">Member ID: KCS003</p>
+                            <p class="member-email">amit.singh@email.com</p>
+                            <p class="member-phone">+91 9876543212</p>
+                            <div class="member-stats">
+                                <span class="stat">
+                                    <i class="fas fa-calendar"></i>
+                                    Joined: Nov 2023
+                                </span>
+                                <span class="stat">
+                                    <i class="fas fa-coins"></i>
+                                    Balance: ₹42,750
+                                </span>
+                            </div>
+                            <div class="member-status active">Active</div>
+                        </div>
+                        <div class="profile-actions">
+                            <button class="btn-action view" onclick="viewMemberDetails('KCS003')">
+                                <i class="fas fa-eye"></i> View
+                            </button>
+                            <button class="btn-action edit" onclick="editMemberProfile('KCS003')">
+                                <i class="fas fa-edit"></i> Edit
+                            </button>
+                            <button class="btn-action message" onclick="sendMessage('KCS003')">
+                                <i class="fas fa-envelope"></i> Message
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2023 Kafal Cooperative Society. All rights reserved.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+    <script>
+        // Filter functionality
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                const filter = this.dataset.filter;
+                filterRequests(filter);
+            });
+        });
+
+        // Search functionality
+        document.getElementById('memberSearch').addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            const activeFilter = document.querySelector('.filter-btn.active').dataset.filter;
+            filterRequests(activeFilter, searchTerm);
+        });
+
+        function filterRequests(statusFilter, searchTerm = '') {
+            const rows = document.querySelectorAll('#requestsTableBody tr');
+            
+            rows.forEach(row => {
+                const name = row.querySelector('.member-info span').textContent.toLowerCase();
+                const email = row.cells[1].textContent.toLowerCase();
+                const phone = row.cells[2].textContent.toLowerCase();
+                
+                const matchesSearch = searchTerm === '' || 
+                    name.includes(searchTerm) || 
+                    email.includes(searchTerm) || 
+                    phone.includes(searchTerm);
+                
+                const matchesFilter = statusFilter === 'all' || row.dataset.status === statusFilter;
+                
+                if (matchesSearch && matchesFilter) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+
+        // Request management functions
+        async function approveRequest(requestId) {
+            if (!confirm('Are you sure you want to approve this member request?')) return;
+            
+            try {
+                kafalAPI.showLoading(true);
+                const response = await kafalAPI.approveMemberRequest(requestId, 'Approved by admin');
+                
+                if (response.success) {
+                    kafalAPI.showNotification('Member request approved successfully!', 'success');
+                    await loadMemberRequests(); // Reload the table
+                    await loadDashboardData(); // Update stats
+                } else {
+                    kafalAPI.showNotification(response.message || 'Failed to approve request', 'error');
+                }
+            } catch (error) {
+                kafalAPI.showNotification('Failed to approve request: ' + error.message, 'error');
+            } finally {
+                kafalAPI.showLoading(false);
+            }
+        }
+
+        function rejectRequest(id) {
+            if (confirm('Are you sure you want to reject this member request?')) {
+                const row = document.querySelector(`tr[data-status="pending"]:nth-child(${id})`);
+                if (row) {
+                    row.dataset.status = 'rejected';
+                    row.querySelector('.status-badge').textContent = 'Rejected';
+                    row.querySelector('.status-badge').className = 'status-badge rejected';
+                    row.querySelector('.action-buttons').innerHTML = `
+                        <button class="btn-action view" onclick="viewRequest(${id})">
+                            <i class="fas fa-eye"></i> View
+                        </button>
+                    `;
+                }
+                alert('Member request rejected.');
+                updateStats();
+            }
+        }
+
+        async function loadDashboardData() {
+            try {
+                kafalAPI.showLoading(true);
+                
+                // Load dashboard statistics
+                const stats = await kafalAPI.getDashboardStats();
+                if (stats.success) {
+                    updateDashboardStats(stats.data);
+                }
+                
+                // Load member requests
+                await loadMemberRequests();
+                
+            } catch (error) {
+                kafalAPI.showNotification('Failed to load dashboard data: ' + error.message, 'error');
+            } finally {
+                kafalAPI.showLoading(false);
+            }
+        }
+        
+        function updateDashboardStats(data) {
+            document.querySelector('.stat-card:nth-child(1) .stat-number').textContent = data.total_members || 0;
+            document.querySelector('.stat-card:nth-child(2) .stat-number').textContent = data.pending_requests || 0;
+            document.querySelector('.stat-card:nth-child(3) .stat-number').textContent = data.approved_today || 0;
+            document.querySelector('.stat-card:nth-child(4) .stat-number').textContent = data.active_notices || 0;
+        }
+        
+        async function loadMemberRequests() {
+            try {
+                const response = await kafalAPI.getMemberRequests({ page: 1, limit: 10 });
+                if (response.success) {
+                    displayMemberRequests(response.data.requests);
+                }
+            } catch (error) {
+                console.error('Failed to load member requests:', error);
+            }
+        }
+        
+        function displayMemberRequests(requests) {
+            const tbody = document.querySelector('.requests-table tbody');
+            if (!tbody || !requests) return;
+            
+            tbody.innerHTML = requests.map(request => `
+                <tr data-status="${request.status.toLowerCase()}">
+                    <td>
+                        <div class="member-info">
+                            <i class="fas fa-user"></i>
+                            <span>${request.first_name} ${request.last_name}</span>
+                        </div>
+                    </td>
+                    <td>${request.email}</td>
+                    <td>${request.phone}</td>
+                    <td>${kafalAPI.formatDate(request.request_date)}</td>
+                    <td><span class="status-badge ${request.status.toLowerCase()}">${request.status}</span></td>
+                    <td>
+                        <div class="action-buttons">
+                            <button class="btn-action view" onclick="viewRequest(${request.request_id})">
+                                <i class="fas fa-eye"></i> View
+                            </button>
+                            ${request.status === 'Pending' ? `
+                                <button class="btn-action approve" onclick="approveRequest(${request.request_id})">
+                                    <i class="fas fa-check"></i> Approve
+                                </button>
+                                <button class="btn-action reject" onclick="rejectRequest(${request.request_id})">
+                                    <i class="fas fa-times"></i> Reject
+                                </button>
+                            ` : ''}
+                        </div>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function viewRequest(id) {
+            // Sample request data
+            const requestData = {
+                name: 'Rajesh Kumar',
+                email: 'rajesh.kumar@email.com',
+                phone: '+91 9876543210',
+                address: '123 Main Street, Delhi',
+                dateApplied: '2024-01-15',
+                status: 'Pending'
+            };
+
+            document.getElementById('requestDetails').innerHTML = `
+                <div class="request-info">
+                    <h3>Personal Information</h3>
+                    <p><strong>Name:</strong> ${requestData.name}</p>
+                    <p><strong>Email:</strong> ${requestData.email}</p>
+                    <p><strong>Phone:</strong> ${requestData.phone}</p>
+                    <p><strong>Address:</strong> ${requestData.address}</p>
+                    <p><strong>Date Applied:</strong> ${requestData.dateApplied}</p>
+                    <p><strong>Status:</strong> <span class="status-badge ${requestData.status.toLowerCase()}">${requestData.status}</span></p>
+                </div>
+            `;
+            
+            document.getElementById('requestModal').style.display = 'block';
+        }
+
+        function closeRequestModal() {
+            document.getElementById('requestModal').style.display = 'none';
+        }
+
+        // Member Profiles Modal Functions
+        function showMemberProfilesModal() {
+            document.getElementById('memberProfilesModal').style.display = 'block';
+        }
+
+        function closeMemberProfilesModal() {
+            document.getElementById('memberProfilesModal').style.display = 'none';
+        }
+
+        function viewMemberDetails(memberId) {
+            alert(`Viewing detailed profile for Member ID: ${memberId}`);
+        }
+
+        function editMemberProfile(memberId) {
+            alert(`Editing profile for Member ID: ${memberId}`);
+        }
+
+        function sendMessage(memberId) {
+            const message = prompt(`Send message to Member ID ${memberId}:`);
+            if (message) {
+                alert(`Message sent successfully to ${memberId}: "${message}"`);
+            }
+        }
+
+        function exportMemberData() {
+            alert('Exporting member data to CSV file...');
+            // Simulate CSV download
+            const csvContent = "Member ID,Name,Email,Phone,Status,Balance\nKCS001,Rajesh Kumar,rajesh.kumar@email.com,+91 9876543210,Active,25000\nKCS002,Priya Sharma,priya.sharma@email.com,+91 9876543211,Premium,18500\nKCS003,Amit Singh,amit.singh@email.com,+91 9876543212,Active,42750";
+            const blob = new Blob([csvContent], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'member_data.csv';
+            a.click();
+        }
+
+        // Notice management functions
+        function showNoticeModal() {
+            document.getElementById('noticeModal').style.display = 'block';
+        }
+
+        function closeNoticeModal() {
+            document.getElementById('noticeModal').style.display = 'none';
+        }
+
+        function editNotice(id) {
+            alert('Edit notice functionality - to be implemented');
+        }
+
+        function deleteNotice(id) {
+            if (confirm('Are you sure you want to delete this notice?')) {
+
+// Notice management functions
+function showNoticeModal() {
+    document.getElementById('noticeModal').style.display = 'block';
+}
+        });
+
+        // PDF upload preview
+        document.getElementById('noticePDF').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            const preview = document.getElementById('pdfPreview');
+            
+            if (file) {
+                const fileName = file.name;
+                const fileSize = (file.size / 1024 / 1024).toFixed(2);
+                
+                preview.innerHTML = `
+                    <div class="file-info">
+                        <i class="fas fa-file-pdf"></i>
+                        <span>${fileName}</span>
+                        <small>(${fileSize} MB)</small>
+                    </div>
+                `;
+                preview.style.display = 'block';
+            }
+        });
+
+        function updateStats() {
+            // Update dashboard statistics
+            const pendingCount = document.querySelectorAll('tr[data-status="pending"]').length;
+            document.querySelector('.stat-card .stat-number').textContent = pendingCount;
+        }
+
+        async function logout() {
+            if (!confirm('Are you sure you want to logout?')) return;
+            
+            try {
+                await kafalAPI.logout();
+                kafalAPI.showNotification('Logged out successfully', 'success');
+                setTimeout(() => {
+                    window.location.href = 'admin-login.html';
+                }, 1000);
+            } catch (error) {
+                // Even if logout API fails, clear local tokens
+                kafalAPI.clearTokens();
+                window.location.href = 'admin-login.html';
+            }
+        }
+
+        // Close modals when clicking outside
+        window.onclick = function(event) {
+            const noticeModal = document.getElementById('noticeModal');
+            const requestModal = document.getElementById('requestModal');
+            const memberProfilesModal = document.getElementById('memberProfilesModal');
+            
+            if (event.target == noticeModal) {
+                closeNoticeModal();
+            }
+            if (event.target == requestModal) {
+                closeRequestModal();
+            }
+            if (event.target == memberProfilesModal) {
+                closeMemberProfilesModal();
+            }
+        }
+    </script>
+</body>
+</html>

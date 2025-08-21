@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - Kafal Cooperative Society</title>
+    <meta name="description" content="Administrative login portal for Kafal Cooperative Society management.">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="assets/js/api.js"></script>
+    <script>
+        async function handleAdminLogin(event) {
+            event.preventDefault();
+            
+            const formData = new FormData(event.target);
+            const loginData = {
+                admin_id: formData.get('adminId'),
+                password: formData.get('password')
+            };
+
+            try {
+                const api = new API();
+                const response = await api.post('/admin/login', loginData);
+                
+                if (response.success) {
+                    localStorage.setItem('token', response.data.token);
+                    localStorage.setItem('user', JSON.stringify(response.data.admin));
+                    window.location.href = 'admin-dashboard.html';
+                } else {
+                    alert('Login failed: ' + response.message);
+                }
+            } catch (error) {
+                alert('Login error: ' + error.message);
+            }
+        }
+    </script>
+</head>
+<body class="admin-auth admin-login">
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <img src="images/logo svg.svg" alt="Kafal Cooperative Society Logo" class="auth-logo">
+                <h1><i class="fas fa-user-shield"></i> Admin Login</h1>
+                <p>Administrative Access Portal</p>
+            </div>
+            
+            <form class="auth-form" id="adminLoginForm" onsubmit="handleAdminLogin(event)">
+                <div class="form-group">
+                    <label for="adminId">Admin ID *</label>
+                    <div class="input-group">
+                        <i class="fas fa-id-badge"></i>
+                        <input type="text" id="adminId" name="adminId" placeholder="Enter your Admin ID" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password *</label>
+                    <div class="input-group">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                        <button type="button" class="password-toggle" onclick="togglePassword()">
+                            <i class="fas fa-eye" id="passwordIcon"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="checkbox-container">
+                        <input type="checkbox" id="rememberMe">
+                        <span class="checkmark"></span>
+                        Remember me for 30 days
+                    </label>
+                </div>
+                
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-sign-in-alt"></i> Login as Admin
+                </button>
+            </form>
+            
+            <div class="auth-divider">
+                <span>OR</span>
+            </div>
+            
+            <div class="social-login">
+                <button class="btn btn-google" onclick="loginWithGoogle()">
+                    <i class="fab fa-google"></i> Continue with Google
+                </button>
+                
+                <button class="btn btn-phone" onclick="loginWithPhone()">
+                    <i class="fas fa-phone"></i> Login with Phone
+                </button>
+            </div>
+            
+            <div class="auth-links">
+                <a href="#" onclick="forgotPassword()">Forgot Password?</a>
+                <span>•</span>
+                <a href="#" onclick="requestAdminAccess()">Request Admin Access</a>
+            </div>
+            
+            <div class="auth-footer">
+                <p><a href="index.html"><i class="fas fa-arrow-left"></i> Back to Home</a></p>
+                <p><a href="member-login.html">Member Login</a></p>
+            </div>
+        </div>
+        <div class="auth-info admin-info">
+            <div class="info-card">
+                <i class="fas fa-shield-alt"></i>
+                <h3>Secure Access</h3>
+                <p>All admin logins are protected with enterprise-grade security and monitoring.</p>
+            </div>
+            <div class="info-card">
+                <i class="fas fa-chart-line"></i>
+                <h3>Real-time Insights</h3>
+                <p>Access dashboards, reports, and key performance indicators instantly.</p>
+            </div>
+            <div class="info-card">
+                <i class="fas fa-tools"></i>
+                <h3>Management Tools</h3>
+                <p>Manage users, approvals, notices, loans, and deposits from one place.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Phone OTP Modal -->
+    <div id="otpModal" class="otp-modal">
+        <div class="otp-modal-content">
+            <div class="otp-modal-header">
+                <h3><i class="fas fa-mobile-alt"></i> Phone Verification</h3>
+                <span class="close" onclick="closeOtpModal()">&times;</span>
+            </div>
+            <div class="otp-modal-body">
+                <p>Enter the 6-digit OTP sent to <span id="phoneNumber"></span></p>
+                <div class="otp-input-group">
+                    <input type="text" maxlength="1" class="otp-input" oninput="moveToNext(this, 1)">
+                    <input type="text" maxlength="1" class="otp-input" oninput="moveToNext(this, 2)">
+                    <input type="text" maxlength="1" class="otp-input" oninput="moveToNext(this, 3)">
+                    <input type="text" maxlength="1" class="otp-input" oninput="moveToNext(this, 4)">
+                    <input type="text" maxlength="1" class="otp-input" oninput="moveToNext(this, 5)">
+                    <input type="text" maxlength="1" class="otp-input" oninput="moveToNext(this, 6)">
+                </div>
+                <div class="otp-actions">
+                    <button class="btn btn-outline" onclick="resendOtp()">Resend OTP</button>
+                    <button class="btn btn-primary" onclick="verifyOtp()">Verify & Login</button>
+                </div>
+                <p class="otp-timer">Resend OTP in <span id="timer">60</span> seconds</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/api.js"></script>
+    <script src="assets/js/realtime.js"></script>
+    <script src="assets/js/google-auth.js"></script>
+    <script src="assets/js/auth.js"></script>
+    <script>
+        let otpTimer;
+        let timeLeft = 60;
+        
+        function togglePassword() {
+            const passwordField = document.getElementById('password');
+            const passwordIcon = document.getElementById('passwordIcon');
+            
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                passwordIcon.className = 'fas fa-eye-slash';
+            } else {
+                passwordField.type = 'password';
+                passwordIcon.className = 'fas fa-eye';
+            }
+        }
+        
+        function loginWithGoogle() {
+            adminGoogleLogin();
+        }
+        
+        function loginWithPhone() {
+            const phone = prompt('Enter your registered admin phone number (+91XXXXXXXXXX):');
+            if (phone && phone.length >= 10) {
+                document.getElementById('phoneNumber').textContent = phone;
+                document.getElementById('otpModal').style.display = 'block';
+                startOtpTimer();
+                alert('OTP sent to ' + phone);
+            } else if (phone) {
+                alert('Please enter a valid phone number.');
+            }
+        }
+        
+        function closeOtpModal() {
+            document.getElementById('otpModal').style.display = 'none';
+            clearInterval(otpTimer);
+        }
+        
+        function moveToNext(current, nextIndex) {
+            if (current.value.length === 1 && nextIndex <= 6) {
+                const nextInput = document.querySelectorAll('.otp-input')[nextIndex - 1];
+                if (nextInput) nextInput.focus();
+            }
+        }
+        
+        function startOtpTimer() {
+            timeLeft = 60;
+            const timerElement = document.getElementById('timer');
+            const resendBtn = document.querySelector('.otp-actions .btn-outline');
+            
+            resendBtn.disabled = true;
+            
+            otpTimer = setInterval(() => {
+                timeLeft--;
+                timerElement.textContent = timeLeft;
+                
+                if (timeLeft <= 0) {
+                    clearInterval(otpTimer);
+                    resendBtn.disabled = false;
+                    timerElement.parentElement.textContent = 'You can now resend OTP';
+                }
+            }, 1000);
+        }
+        
+        function resendOtp() {
+            alert('OTP resent successfully!');
+            startOtpTimer();
+        }
+        
+        function verifyOtp() {
+            const otpInputs = document.querySelectorAll('.otp-input');
+            const otp = Array.from(otpInputs).map(input => input.value).join('');
+            
+            if (otp.length === 6) {
+                alert('OTP verified successfully! Welcome to admin dashboard.');
+                closeOtpModal();
+                window.location.href = 'admin-dashboard.html';
+            } else {
+                alert('Please enter the complete 6-digit OTP.');
+            }
+        }
+        
+        function forgotPassword() {
+            const adminId = prompt('Enter your Admin ID to reset password:');
+            if (adminId) {
+                alert('Password reset link has been sent to your registered email address.');
+            }
+        }
+        
+        function requestAdminAccess() {
+            alert('Please contact the system administrator to request admin access.');
+        }
+        
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const otpModal = document.getElementById('otpModal');
+            if (event.target == otpModal) {
+                closeOtpModal();
+            }
+        }
+    </script>
+</body>
+</html>
+                                Remember this device
+                            </label>
+                            <a href="#" class="forgot-link">Reset Access?</a>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary btn-full admin-btn">
+                            <i class="fas fa-sign-in-alt"></i>
+                            Access Admin Portal
+                        </button>
+                    </form>
+                    
+                    <div class="auth-footer">
+                        <p class="security-notice">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            This is a secure area. All access attempts are logged and monitored.
+                        </p>
+                        <p>Need admin access? <a href="admin-register.html">Request Access</a></p>
+                        <p class="member-link">Regular banking? <a href="member-login.html">Member Login</a></p>
+                    </div>
+                </div>
+                
+                <div class="auth-info admin-info">
+                    <div class="info-card">
+                        <i class="fas fa-users-cog"></i>
+                        <h3>User Management</h3>
+                        <p>Manage customer accounts, permissions, and access controls.</p>
+                    </div>
+                    <div class="info-card">
+                        <i class="fas fa-chart-bar"></i>
+                        <h3>Analytics Dashboard</h3>
+                        <p>View comprehensive reports and banking analytics.</p>
+                    </div>
+                    <div class="info-card">
+                        <i class="fas fa-cogs"></i>
+                        <h3>System Settings</h3>
+                        <p>Configure bank operations and security parameters.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Accounts</h3>
+                    <ul>
+                        <li><a href="#">Savings Account</a></li>
+                        <li><a href="#">Current Account</a></li>
+                        <li><a href="#">Salary Account</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="services.html">Loans</a></li>
+                        <li><a href="services.html">Cards</a></li>
+                        <li><a href="services.html">Investments</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="events.html">Events</a></li>
+                        <li><a href="#">Careers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li><a href="#">Customer Care</a></li>
+                        <li><a href="#">Branch Locator</a></li>
+                        <li>24x7 Helpline: 1800 123 4567</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Kafal Cooperative Society. All rights reserved.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/auth.js"></script>
+</body>
+</html>

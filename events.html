@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events - Kafal Cooperative Society</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="images/logo svg.svg" alt="Kafal Cooperative Society Logo" onerror="this.style.display='none'">
+                Kafal Cooperative Society
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About Us</a>
+                <a href="events.html" class="active">Events</a>
+                <a href="services.html">Services</a>
+                <div class="nav-actions">
+                    <div class="notification-bell" onclick="toggleNotifications()">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge" id="notificationBadge" style="display: none;">0</span>
+                        <div class="notification-dropdown" id="notificationDropdown">
+                            <div class="notification-header">
+                                <h3>Notifications</h3>
+                                <span class="mark-all-read" onclick="markAllRead()">Mark all as read</span>
+                            </div>
+                            <div class="notification-list" id="notificationList">
+                                <div class="notification-item">
+                                    <div class="notification-icon">
+                                        <i class="fas fa-info-circle"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <h4>No New Notifications</h4>
+                                        <p>You're all caught up! Check back later for updates.</p>
+                                        <span class="notification-time">Now</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="notification-footer">
+                                <a href="#" class="view-all-btn">View All Notifications</a>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="admin-register.html" class="btn btn-outline">Admin Register</a>
+                    <a href="member-login.html" class="btn btn-primary">Login</a>
+                </div>
+            </div>
+            <button class="menu-toggle" aria-label="Toggle menu">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Events Hero -->
+    <section class="page-hero">
+        <div class="container">
+            <h1>Recent Events</h1>
+            <p>Stay updated with our latest activities and initiatives</p>
+        </div>
+    </section>
+
+    <!-- Timeline -->
+    <section class="timeline-section">
+        <div class="container">
+            <div class="timeline">
+                <!-- Event 1 -->
+                <div class="timeline-event">
+                    <div class="event-date">June 15, 2023</div>
+                    <div class="event-card">
+                        <img src="images/event1.jpg" alt="Annual General Meeting">
+                        <div class="event-content">
+                            <h3>Annual General Meeting 2023</h3>
+                            <p>Key announcements included record profits for FY23 and plans for 25 new branches across the country.</p>
+                            <a href="#" class="btn btn-secondary">View Photos</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Event 2 -->
+                <div class="timeline-event">
+                    <div class="event-date">April 5, 2023</div>
+                    <div class="event-card">
+                        <img src="images/event2.jpg" alt="Mobile App Launch">
+                        <div class="event-content">
+                            <h3>Mobile App Redesign Launch</h3>
+                            <p>Our newly redesigned mobile banking app with enhanced security features is now available on all platforms.</p>
+                            <a href="#" class="btn btn-secondary">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Event 3 -->
+                <div class="timeline-event">
+                    <div class="event-date">March 20, 2023</div>
+                    <div class="event-card">
+                        <img src="images/event3.jpg" alt="Financial Literacy Workshop">
+                        <div class="event-content">
+                            <h3>Financial Literacy Workshop</h3>
+                            <p>Free community workshop on personal finance management attended by 300+ participants.</p>
+                            <a href="#" class="btn btn-secondary">View Resources</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Upcoming Events -->
+    <section class="upcoming-events">
+        <div class="container">
+            <h2 class="section-title">Upcoming Events</h2>
+            <div class="no-events-message">
+                <div class="no-events-icon">
+                    <i class="fas fa-calendar-times"></i>
+                </div>
+                <h3>No Upcoming Events</h3>
+                <p>There are currently no events scheduled. Please check back later for updates on upcoming activities and initiatives.</p>
+                <a href="#" class="btn btn-primary">Subscribe to Updates</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Accounts</h3>
+                    <ul>
+                        <li><a href="#">Savings Account</a></li>
+                        <li><a href="#">Current Account</a></li>
+                        <li><a href="#">Salary Account</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="services.html">Loans</a></li>
+                        <li><a href="services.html">Cards</a></li>
+                        <li><a href="services.html">Investments</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="events.html">Events</a></li>
+                        <li><a href="#">Careers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li><a href="#">Customer Care</a></li>
+                        <li><a href="#">Branch Locator</a></li>
+                        <li>24x7 Helpline: 1800 123 4567</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Kafal Cooperative Society. All rights reserved.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
